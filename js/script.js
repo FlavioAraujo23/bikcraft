@@ -4,61 +4,65 @@ const links = document.querySelectorAll(".header-menu a");
 function ativarLink(link) {
   const url = location.href;
   const href = link.href;
-if (url.includes(href)){
-  link.classList.add("ativo");
-}
+  if (url.includes(href)) {
+    link.classList.add("ativo");
+  }
 }
 
-links.forEach(ativarLink)
+links.forEach(ativarLink);
 
 // Ativar itens do orçamento
 
-const parametros = new URLSearchParams(location.search) 
+const parametros = new URLSearchParams(location.search);
 
-function ativarProduto(parametro){
-  const elemento = document.getElementById(parametro)
-  if(elemento){
-    elemento.checked = true
+function ativarProduto(parametro) {
+  const elemento = document.getElementById(parametro);
+  if (elemento) {
+    elemento.checked = true;
   }
 }
 
-  parametros.forEach(ativarProduto)
+parametros.forEach(ativarProduto);
 
-  // Perguntas Frequentes
+// Perguntas Frequentes
 
-  const perguntas = document.querySelectorAll(".perguntas button");
+const perguntas = document.querySelectorAll(".perguntas button");
 
-  function ativarPergunta(event){
-    const pergunta = event.currentTarget;
-    const controle = pergunta.getAttribute('aria-controls');
-    const resposta = document.getElementById(controle);
+function ativarPergunta(event) {
+  const pergunta = event.currentTarget;
+  const controle = pergunta.getAttribute("aria-controls");
+  const resposta = document.getElementById(controle);
 
-       resposta.classList.toggle('ativa');
-       const ativa = resposta.classList.contains('ativa');
-    pergunta.setAttribute('aria-expanded', ativa)
-  }
+  resposta.classList.toggle("ativa");
+  const ativa = resposta.classList.contains("ativa");
+  pergunta.setAttribute("aria-expanded", ativa);
+}
 
-  function eventosPerguntas(pergunta){
-    pergunta.addEventListener('click', ativarPergunta);
-  }
+function eventosPerguntas(pergunta) {
+  pergunta.addEventListener("click", ativarPergunta);
+}
 
-  perguntas.forEach(eventosPerguntas);
+perguntas.forEach(eventosPerguntas);
 
-  // Galeria de Bicicletas
-  const galeria = document.querySelectorAll('.bicicleta-imagens img');
-  const galeriaContainer = document.querySelector('.bicicleta-imagens');
+// Galeria de Bicicletas
+const galeria = document.querySelectorAll(".bicicleta-imagens img");
+const galeriaContainer = document.querySelector(".bicicleta-imagens");
 
-function trocarImagem(event){
+function trocarImagem(event) {
   const img = event.currentTarget;
- const media = matchMedia('(min-width: 1000px)').matches;
- if(media){
-  galeriaContainer.prepend(img)
- }
-  
+  const media = matchMedia("(min-width: 1000px)").matches;
+  if (media) {
+    galeriaContainer.prepend(img);
+  }
 }
 
-function eventosGaleria(img){
-  img.addEventListener('click', trocarImagem);
+function eventosGaleria(img) {
+  img.addEventListener("click", trocarImagem);
 }
 
-  galeria.forEach(eventosGaleria);
+galeria.forEach(eventosGaleria);
+
+// Animação
+if (window.SimpleAnime) {
+  new SimpleAnime();
+}
